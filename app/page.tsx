@@ -1,10 +1,5 @@
-import Link from "next/link";
+import { redirect } from 'next/navigation';
 
-export default function Home() {
-  return (
-    <main className="flex flex-col items-center p-24">
-      <span className="text-5xl">Hello world</span>
-      <Link href={'/about'}>About</Link>
-    </main>
-  )
+export default function HomePage() {
+  redirect("/dashboard/counter");
 }
