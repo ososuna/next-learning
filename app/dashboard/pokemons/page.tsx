@@ -8,6 +8,9 @@ const getPokemons = async (limit = 150, offset = 0): Promise<SimplePokemon[]> =>
     id: pokemon.url.split('/').at(-2)!,
     name: pokemon.name,
   }));
+
+  // throw new Error('Error');
+
   return pokemons;
 }
 
