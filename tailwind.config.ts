@@ -5,6 +5,8 @@ const config: Config = {
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
     './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './pokemons/**/*.{js,ts,jsx,tsx,mdx}',
+    './shopping-cart/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
