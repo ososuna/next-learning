@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
 import { Pokemon } from '@/pokemons';
 
 interface Props {
@@ -7,22 +8,32 @@ interface Props {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-
-  const { id, name } = await getPokemon(params.id);
-
-  return {
-    title: `#${id} - ${name}`,
-    description: `Pokemon ${params.id} description`,
+  try {
+    const { id, name } = await getPokemon(params.id);
+    return {
+      title: `#${id} - ${name}`,
+      description: `Pokemon ${params.id} description`,
+    }
+  } catch (error) {
+    return {
+      title: 'Pokemon page',
+      description: 'Pokemon description',
+    }
   }
 }
 
 const getPokemon = async (id: string): Promise<Pokemon> => {
-  return await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
-    cache: 'force-cache',
-    // next: {
-    //   revalidate: 60 * 60 * 24,
-    // }
-  }).then(res => res.json());
+  try {
+    const pokemon = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`, {
+      cache: 'force-cache',
+      // next: {
+      //   revalidate: 60 * 60 * 24,
+      // }
+    }).then(res => res.json());
+    return pokemon;
+  } catch (error) {
+    notFound();
+  }
 }
 
 export default async function PokemonPage({ params }: Props) {
