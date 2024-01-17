@@ -1,4 +1,5 @@
 import { SimpleWidget } from '@/components/SimpleWidget';
+
 export default function MainPage() {
   return (
     <div className="text-black p-2">
